@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Làm đẹp code by Dinhit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+    <h1>Làm đẹp code</h1>
+    <p class="page-desc">
+      Chọn tab <strong>HTML</strong>, <strong>JS</strong> hoặc <strong>CSS</strong>,
+      dán code vào ô bên trái, chỉnh tuỳ chọn rồi bấm nút làm đẹp.
+      Tất cả xử lý đều chạy bằng JavaScript trên trình duyệt (offline).
+    </p>
+
+    <!-- MAIN TABS -->
+    <div class="main-tabs">
+      <button class="main-tab active" data-tab="html">HTML</button>
+      <button class="main-tab" data-tab="js">JS</button>
+      <button class="main-tab" data-tab="css">CSS</button>
+      <button class="main-tab" data-tab="code">CODE</button>
+    </div>
+
+    <!-- PANEL HTML -->
+    <div class="tool-panel is-active" data-tab="html">
+      <div class="layout">
+        <!-- INPUT + OPTIONS -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Code HTML</div>
+            <div class="output-actions">
+              <button class="btn btn-ghost" id="html-select-all">Chọn tất cả</button>
+              <button class="btn btn-ghost" id="html-clear">Xóa hết</button>
+            </div>
+          </div>
+
+          <textarea id="html-input" spellcheck="false"
+            placeholder="&lt;!-- Dán HTML của bạn vào đây --&gt;"></textarea>
+
+          <div class="tool-options-row">
+            <div class="tool-options-block">
+              <div class="tool-options-title">Tùy chọn khi làm đẹp HTML</div>
+
+              <label class="option">
+                <input type="checkbox" id="html-remove-empty" />
+                <span>Xóa dòng trống dư thừa</span>
+              </label>
+
+              <div class="indent-row">
+                <span class="indent-label">Thụt đầu dòng:</span>
+                <div class="indent-buttons">
+                  <button type="button" class="indent-btn indent-html active" data-indent-html="2">
+                    2 dấu cách
+                  </button>
+                  <button type="button" class="indent-btn indent-html" data-indent-html="4">
+                    4 dấu cách
+                  </button>
+                  <button type="button" class="indent-btn indent-html" data-indent-html="tab">
+                    1 tab
+                  </button>
+                </div>
+              </div>
+
+              <button class="btn btn-primary-full" id="html-beautify">
+                Làm đẹp HTML
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- OUTPUT -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">
+              Kết quả HTML
+              <span class="badge" id="html-length" style="display:none"></span>
+            </div>
+            <div class="output-actions">
+              <button id="html-copy"
+                      class="copy-btn"
+                      type="button"
+                      data-label-default="Sao chép mã"
+                      data-label-copied="Đã sao chép">
+                <span class="copy-btn__icon copy-default">
+                  <!-- icon copy (giữ nguyên SVG) -->
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4
+                            a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                </span>
+
+                <span class="copy-btn__icon copy-check">
+                  <!-- icon check (giữ nguyên SVG) -->
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </span>
+
+                <span class="copy-btn__label">Sao chép mã</span>
+              </button>
+            </div>
+          </div>
+          <textarea id="html-output" spellcheck="false" readonly
+            placeholder="&lt;!-- Kết quả HTML sẽ hiển thị ở đây --&gt;"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL JS -->
+    <div class="tool-panel" data-tab="js">
+      <div class="layout">
+        <!-- INPUT + OPTIONS -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Code JavaScript</div>
+            <div class="output-actions">
+              <button class="btn btn-ghost" id="js-select-all">Chọn tất cả</button>
+              <button class="btn btn-ghost" id="js-clear">Xóa hết</button>
+            </div>
+          </div>
+
+          <textarea id="js-input" spellcheck="false"
+            placeholder="// Dán JavaScript của bạn vào đây"></textarea>
+
+          <div class="tool-options-row">
+            <div class="tool-options-block">
+              <div class="tool-options-title">Tùy chọn khi làm đẹp JS</div>
+
+              <label class="option">
+                <input type="checkbox" id="js-remove-empty" />
+                <span>Xóa dòng trống dư thừa</span>
+              </label>
+
+              <div class="indent-row">
+                <span class="indent-label">Thụt đầu dòng:</span>
+                <div class="indent-buttons">
+                  <button type="button" class="indent-btn indent-js active" data-indent-js="2">
+                    2 dấu cách
+                  </button>
+                  <button type="button" class="indent-btn indent-js" data-indent-js="4">
+                    4 dấu cách
+                  </button>
+                  <button type="button" class="indent-btn indent-js" data-indent-js="tab">
+                    1 tab
+                  </button>
+                </div>
+              </div>
+
+              <button class="btn btn-primary-full" id="js-beautify">
+                Làm đẹp JS
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- OUTPUT -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">
+              Kết quả JS
+              <span class="badge" id="js-length" style="display:none"></span>
+            </div>
+            <div class="output-actions">
+              <button id="js-copy"
+                      class="copy-btn"
+                      type="button"
+                      data-label-default="Sao chép mã"
+                      data-label-copied="Đã sao chép">
+                <span class="copy-btn__icon copy-default">
+                  <!-- icon copy -->
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4
+                            a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                </span>
+
+                <span class="copy-btn__icon copy-check">
+                  <!-- icon check -->
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </span>
+
+                <span class="copy-btn__label">Sao chép mã</span>
+              </button>
+
+            </div>
+          </div>
+          <textarea id="js-output" spellcheck="false" readonly
+            placeholder="// Kết quả JS sẽ hiển thị ở đây"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL CSS (giữ logic hiện tại) -->
+    <div class="tool-panel" data-tab="css">
+      <div class="layout">
+        <!-- INPUT + OPTIONS -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Dán code CSS:</div>
+            <div class="output-actions">
+              <button class="btn btn-ghost" id="css-select-all">Chọn tất cả</button>
+              <button class="btn btn-ghost" id="css-clear">Xóa hết</button>
+            </div>
+          </div>
+
+          <textarea
+            id="css-input"
+            spellcheck="false"
+            placeholder="/* Dán CSS của bạn vào đây */"
+          ></textarea>
+
+          <!-- Toggle Nén / Làm đẹp -->
+          <div class="btn-group-toggle">
+            <div class="btn-toggle-slider" id="toggle-slider"></div>
+            <button class="btn-toggle btn-toggle-active" id="btn-toggle-minify">
+              Nén CSS
+            </button>
+            <button class="btn-toggle" id="btn-toggle-beautify">
+              Làm đẹp CSS
+            </button>
+          </div>
+
+          <!-- NHÓM TÙY CHỌN -->
+          <div class="tool-options-row">
+            <!-- Tùy chọn NÉN CSS -->
+            <div class="tool-options-block" id="block-minify">
+              <div class="tool-options-title">Tùy chọn khi nén CSS</div>
+
+              <label class="option">
+                <input type="checkbox" id="opt-remove-comments" />
+                <span>Gỡ bỏ tất cả chú thích</span>
+              </label>
+
+              <label class="option">
+                <input type="checkbox" id="opt-super-compact" />
+                <span>Nén siêu gọn (một dòng)</span>
+              </label>
+
+              <label class="option">
+                <input type="checkbox" id="opt-keep-newline-before-at" />
+                <span>Giữ xuống dòng trước <code>@media</code></span>
+              </label>
+
+              <label class="option">
+                <input type="checkbox" id="opt-keep-last-semicolon" />
+                <span>Xóa các dấu chấm phẩy cuối cùng</span>
+              </label>
+            </div>
+
+            <!-- Tùy chọn LÀM ĐẸP CSS -->
+            <div class="tool-options-block" id="block-beautify">
+              <div class="tool-options-title">Tùy chọn khi làm đẹp CSS</div>
+
+              <label class="option">
+                <input type="checkbox" id="opt-remove-comments-beautify" />
+                <span>Gỡ bỏ tất cả chú thích</span>
+              </label>
+
+              <label class="option">
+                <input type="checkbox" id="opt-multi-selector" />
+                <span>Chia đa bộ chọn (e.g: <code>html, \n body, \n table {}</code>)</span>
+              </label>
+
+              <label class="option">
+                <input type="checkbox" id="opt-space-between" />
+                <span>Khoảng cách giữa thuộc tính: giá trị ;</span>
+              </label>
+
+              <label class="option">
+                <input type="checkbox" id="opt-single-line-prop" />
+                <span>Viết cùng dòng khi chỉ có một thuộc tính</span>
+              </label>
+
+              <label class="option">
+                <input
+                  type="checkbox"
+                  id="opt-remove-last-semicolon-beautify"
+                />
+                <span>Xóa các dấu chấm phẩy cuối cùng</span>
+              </label>
+
+              <label class="option">
+                <input type="checkbox" id="opt-remove-line-gaps" />
+                <span>Xóa khoảng cách mỗi dòng</span>
+              </label>
+
+              <!-- Thụt đầu dòng: để cuối block -->
+              <div class="indent-row">
+                <span class="indent-label">Thụt đầu dòng:</span>
+                <div class="indent-buttons">
+                  <button type="button" class="indent-btn indent-css active" data-indent="2">
+                    2 dấu cách
+                  </button>
+                  <button type="button" class="indent-btn indent-css" data-indent="4">
+                    4 dấu cách
+                  </button>
+                  <button type="button" class="indent-btn indent-css" data-indent="tab">
+                    1 tab
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- OUTPUT -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">
+              Code kết quả
+              <span class="badge" id="badge-length" style="display: none"></span>
+            </div>
+            <div class="output-actions">
+              <button id="btn-copy"
+                      class="copy-btn"
+                      type="button"
+                      data-label-default="Sao chép mã"
+                      data-label-copied="Đã sao chép">
+                <span class="copy-btn__icon copy-default">
+                  <!-- icon copy -->
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4
+                            a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                </span>
+
+                <span class="copy-btn__icon copy-check">
+                  <!-- icon check -->
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                  </svg>
+                </span>
+
+                <span class="copy-btn__label">Sao chép mã</span>
+              </button>
+            </div>
+          </div>
+
+          <textarea
+            id="css-output"
+            spellcheck="false"
+            placeholder="// Kết quả sẽ hiển thị ở đây"
+            readonly
+          ></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="theme-toggle" type="button">
+    <span class="theme-toggle__track">
+      <span class="theme-toggle__icon theme-toggle__icon--sun">
+        <!-- sun -->
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="14px" width="14px" version="1.1" id="Capa_1" viewBox="0 0 207.628 207.628" xml:space="preserve">
+          <circle cx="103.814" cy="103.814" r="45.868"/>
+          <path d="M103.814,157.183c-29.427,0-53.368-23.941-53.368-53.368s23.941-53.368,53.368-53.368s53.368,23.941,53.368,53.368  S133.241,157.183,103.814,157.183z M103.814,65.446c-21.156,0-38.368,17.212-38.368,38.368s17.212,38.368,38.368,38.368  s38.368-17.212,38.368-38.368S124.97,65.446,103.814,65.446z"/>
+          <path d="M103.814,39.385c-4.142,0-7.5-3.358-7.5-7.5V7.5c0-4.142,3.358-7.5,7.5-7.5s7.5,3.358,7.5,7.5v24.385  C111.314,36.027,107.956,39.385,103.814,39.385z"/>
+          <path d="M103.814,207.628c-4.142,0-7.5-3.358-7.5-7.5v-24.385c0-4.142,3.358-7.5,7.5-7.5s7.5,3.358,7.5,7.5v24.385  C111.314,204.271,107.956,207.628,103.814,207.628z"/>
+          <path d="M200.128,111.314h-24.385c-4.142,0-7.5-3.358-7.5-7.5s3.358-7.5,7.5-7.5h24.385c4.142,0,7.5,3.358,7.5,7.5  S204.271,111.314,200.128,111.314z"/>
+          <path d="M31.885,111.314H7.5c-4.142,0-7.5-3.358-7.5-7.5s3.358-7.5,7.5-7.5h24.385c4.142,0,7.5,3.358,7.5,7.5  S36.027,111.314,31.885,111.314z"/>
+          <path d="M154.676,60.452c-1.919,0-3.839-0.732-5.303-2.197c-2.929-2.929-2.929-7.678,0-10.606l17.243-17.242  c2.929-2.929,7.678-2.93,10.606,0c2.929,2.929,2.929,7.678,0,10.606l-17.243,17.242C158.515,59.72,156.595,60.452,154.676,60.452z"/>
+          <path d="M35.709,179.419c-1.919,0-3.839-0.732-5.303-2.197c-2.929-2.929-2.929-7.678,0-10.606l17.243-17.243  c2.929-2.929,7.678-2.929,10.606,0c2.929,2.929,2.929,7.678,0,10.606l-17.243,17.243C39.548,178.687,37.629,179.419,35.709,179.419z  "/>
+          <path d="M171.918,179.419c-1.919,0-3.839-0.732-5.303-2.197l-17.243-17.243c-2.929-2.929-2.929-7.678,0-10.606  c2.929-2.929,7.678-2.929,10.606,0l17.243,17.243c2.929,2.929,2.929,7.678,0,10.606  C175.757,178.687,173.838,179.419,171.918,179.419z"/>
+          <path d="M52.952,60.452c-1.919,0-3.839-0.732-5.303-2.197L30.406,41.013c-2.929-2.929-2.929-7.677,0-10.606  c2.929-2.929,7.678-2.93,10.606,0l17.243,17.242c2.929,2.929,2.929,7.677,0,10.606C56.791,59.72,54.872,60.452,52.952,60.452z"/>
+        </svg>
+      </span>
+  
+      <span class="theme-toggle__icon theme-toggle__icon--moon">
+        <!-- moon -->
+        <svg width="14" height="14" viewBox="0 0 30 30">
+          <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1" transform="translate(0,-289.0625)">
+            <path d="M 10.244141,3.9980469 A 12,12 0 0 0 3,15 12,12 0 0 0 15,27 12,12 0 0 0 25.900391,19.992188 12,12 0 0 1 21.142578,20.990234 12,12 0 0 1 9.1425781,8.9902344 12,12 0 0 1 10.244141,3.9980469 Z" transform="translate(0,289.0625)" id="path866" inkscape:connector-curvature="0"/>
+          </g>
+        </svg>
+      </span>
+    </span>
+  </button>
+  
+  
+
+  <script src="js/common.js"></script>
+  <script src="js/html_tool.js"></script>
+  <script src="js/js_tool.js"></script>
+  <script src="js/css_tool.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<div class="tool-panel" data-tab="css">
+    <div class="layout">
+      <!-- INPUT + OPTIONS -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Dán code CSS:</div>
+          <div class="output-actions">
+            <button class="btn btn-ghost" id="css-select-all">Chọn tất cả</button>
+            <button class="btn btn-ghost" id="css-clear">Xóa hết</button>
+          </div>
+        </div>
+
+        <textarea
+          id="css-input"
+          spellcheck="false"
+          placeholder="/* Dán CSS của bạn vào đây */"
+        ></textarea>
+
+        <!-- Toggle Nén / Làm đẹp -->
+        <div class="btn-group-toggle">
+          <div class="btn-toggle-slider" id="toggle-slider"></div>
+          <button class="btn-toggle btn-toggle-active" id="btn-toggle-minify">
+            Nén CSS
+          </button>
+          <button class="btn-toggle" id="btn-toggle-beautify">
+            Làm đẹp CSS
+          </button>
+        </div>
+
+        <!-- NHÓM TÙY CHỌN -->
+        <div class="tool-options-row">
+          <!-- Tùy chọn NÉN CSS -->
+          <div class="tool-options-block" id="block-minify">
+            <div class="tool-options-title">Tùy chọn khi nén CSS</div>
+
+            <label class="option">
+              <input type="checkbox" id="opt-remove-comments" />
+              <span>Gỡ bỏ tất cả chú thích</span>
+            </label>
+
+            <label class="option">
+              <input type="checkbox" id="opt-super-compact" />
+              <span>Nén siêu gọn (một dòng)</span>
+            </label>
+
+            <label class="option">
+              <input type="checkbox" id="opt-keep-newline-before-at" />
+              <span>Giữ xuống dòng trước <code>@media</code></span>
+            </label>
+
+            <label class="option">
+              <input type="checkbox" id="opt-keep-last-semicolon" />
+              <span>Xóa các dấu chấm phẩy cuối cùng</span>
+            </label>
+          </div>
+
+          <!-- Tùy chọn LÀM ĐẸP CSS -->
+          <div class="tool-options-block" id="block-beautify">
+            <div class="tool-options-title">Tùy chọn khi làm đẹp CSS</div>
+
+            <label class="option">
+              <input type="checkbox" id="opt-remove-comments-beautify" />
+              <span>Gỡ bỏ tất cả chú thích</span>
+            </label>
+
+            <label class="option">
+              <input type="checkbox" id="opt-multi-selector" />
+              <span>Chia đa bộ chọn (e.g: <code>html, \n body, \n table {}</code>)</span>
+            </label>
+
+            <label class="option">
+              <input type="checkbox" id="opt-space-between" />
+              <span>Khoảng cách giữa thuộc tính: giá trị ;</span>
+            </label>
+
+            <label class="option">
+              <input type="checkbox" id="opt-single-line-prop" />
+              <span>Viết cùng dòng khi chỉ có một thuộc tính</span>
+            </label>
+
+            <label class="option">
+              <input
+                type="checkbox"
+                id="opt-remove-last-semicolon-beautify"
+              />
+              <span>Xóa các dấu chấm phẩy cuối cùng</span>
+            </label>
+
+            <label class="option">
+              <input type="checkbox" id="opt-remove-line-gaps" />
+              <span>Xóa khoảng cách mỗi dòng</span>
+            </label>
+
+            <!-- Thụt đầu dòng: để cuối block -->
+            <div class="indent-row">
+              <span class="indent-label">Thụt đầu dòng:</span>
+              <div class="indent-buttons">
+                <button type="button" class="indent-btn indent-css active" data-indent="2">
+                  2 dấu cách
+                </button>
+                <button type="button" class="indent-btn indent-css" data-indent="4">
+                  4 dấu cách
+                </button>
+                <button type="button" class="indent-btn indent-css" data-indent="tab">
+                  1 tab
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- OUTPUT -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            Code kết quả
+            <span class="badge" id="badge-length" style="display: none"></span>
+          </div>
+          <div class="output-actions">
+            <button id="btn-copy"
+                    class="copy-btn"
+                    type="button"
+                    data-label-default="Sao chép mã"
+                    data-label-copied="Đã sao chép">
+              <span class="copy-btn__icon copy-default">
+                <!-- icon copy -->
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4
+                          a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </span>
+
+              <span class="copy-btn__icon copy-check">
+                <!-- icon check -->
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </span>
+
+              <span class="copy-btn__label">Sao chép mã</span>
+            </button>
+          </div>
+        </div>
+
+        <textarea
+          id="css-output"
+          spellcheck="false"
+          placeholder="// Kết quả sẽ hiển thị ở đây"
+          readonly
+        ></textarea>
+      </div>
+    </div>
+  </div>

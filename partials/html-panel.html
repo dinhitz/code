@@ -1,0 +1,88 @@
+<div class="tool-panel is-active" data-tab="html">
+  <div class="layout">
+    <!-- INPUT + OPTIONS -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Code HTML</div>
+        <div class="output-actions">
+          <button class="btn btn-ghost" id="html-select-all">Chọn tất cả</button>
+          <button class="btn btn-ghost" id="html-clear">Xóa hết</button>
+        </div>
+      </div>
+
+      <textarea id="html-input" spellcheck="false"
+        placeholder="&lt;!-- Dán HTML của bạn vào đây --&gt;"></textarea>
+
+      <div class="tool-options-row">
+        <div class="tool-options-block">
+          <div class="tool-options-title">Tùy chọn khi làm đẹp HTML</div>
+
+          <label class="option">
+            <input type="checkbox" id="html-remove-empty" />
+            <span>Xóa dòng trống dư thừa</span>
+          </label>
+
+          <div class="indent-row">
+            <span class="indent-label">Thụt đầu dòng:</span>
+            <div class="indent-buttons">
+              <button type="button" class="indent-btn indent-html active" data-indent-html="2">
+                2 dấu cách
+              </button>
+              <button type="button" class="indent-btn indent-html" data-indent-html="4">
+                4 dấu cách
+              </button>
+              <button type="button" class="indent-btn indent-html" data-indent-html="tab">
+                1 tab
+              </button>
+            </div>
+          </div>
+
+          <button class="btn btn-primary-full" id="html-beautify">
+            Làm đẹp HTML
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTPUT -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          Kết quả HTML
+          <span class="badge" id="html-length" style="display:none"></span>
+        </div>
+        <div class="output-actions">
+          <button id="html-copy"
+                  class="copy-btn"
+                  type="button"
+                  data-label-default="Sao chép mã"
+                  data-label-copied="Đã sao chép">
+            <span class="copy-btn__icon copy-default">
+              <!-- icon copy (giữ nguyên SVG) -->
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4
+                        a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            </span>
+
+            <span class="copy-btn__icon copy-check">
+              <!-- icon check (giữ nguyên SVG) -->
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+
+            <span class="copy-btn__label">Sao chép mã</span>
+          </button>
+        </div>
+      </div>
+      <textarea id="html-output" spellcheck="false" readonly
+        placeholder="&lt;!-- Kết quả HTML sẽ hiển thị ở đây --&gt;"></textarea>
+    </div>
+  </div>
+</div>

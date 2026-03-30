@@ -1,0 +1,89 @@
+<div class="tool-panel" data-tab="js">
+  <div class="layout">
+    <!-- INPUT + OPTIONS -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Code JavaScript</div>
+        <div class="output-actions">
+          <button class="btn btn-ghost" id="js-select-all">Chọn tất cả</button>
+          <button class="btn btn-ghost" id="js-clear">Xóa hết</button>
+        </div>
+      </div>
+
+      <textarea id="js-input" spellcheck="false"
+        placeholder="// Dán JavaScript của bạn vào đây"></textarea>
+
+      <div class="tool-options-row">
+        <div class="tool-options-block">
+          <div class="tool-options-title">Tùy chọn khi làm đẹp JS</div>
+
+          <label class="option">
+            <input type="checkbox" id="js-remove-empty" />
+            <span>Xóa dòng trống dư thừa</span>
+          </label>
+
+          <div class="indent-row">
+            <span class="indent-label">Thụt đầu dòng:</span>
+            <div class="indent-buttons">
+              <button type="button" class="indent-btn indent-js active" data-indent-js="2">
+                2 dấu cách
+              </button>
+              <button type="button" class="indent-btn indent-js" data-indent-js="4">
+                4 dấu cách
+              </button>
+              <button type="button" class="indent-btn indent-js" data-indent-js="tab">
+                1 tab
+              </button>
+            </div>
+          </div>
+
+          <button class="btn btn-primary-full" id="js-beautify">
+            Làm đẹp JS
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTPUT -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">
+          Kết quả JS
+          <span class="badge" id="js-length" style="display:none"></span>
+        </div>
+        <div class="output-actions">
+          <button id="js-copy"
+                  class="copy-btn"
+                  type="button"
+                  data-label-default="Sao chép mã"
+                  data-label-copied="Đã sao chép">
+            <span class="copy-btn__icon copy-default">
+              <!-- icon copy -->
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4
+                        a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            </span>
+
+            <span class="copy-btn__icon copy-check">
+              <!-- icon check -->
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </span>
+
+            <span class="copy-btn__label">Sao chép mã</span>
+          </button>
+
+        </div>
+      </div>
+      <textarea id="js-output" spellcheck="false" readonly
+        placeholder="// Kết quả JS sẽ hiển thị ở đây"></textarea>
+    </div>
+  </div>
+</div>
