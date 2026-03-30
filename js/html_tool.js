@@ -47,6 +47,7 @@
         htmlIndentButtons.forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
         htmlIndent = btn.getAttribute("data-indent-html") || "2";
+        autoRun();
       });
     });
 
@@ -221,14 +222,27 @@
 
     if (htmlBtnBeautify) {
       htmlBtnBeautify.addEventListener("click", () => {
-        const result = beautifyHTML(
-          htmlInput.value,
-          htmlIndent,
-          htmlRemoveEmpty.checked
-        );
-        htmlOutput.value = result;
-        updateBadge(htmlBadge, result);
+        runBeautify();
       });
+    }
+
+    function runBeautify() {
+      const result = beautifyHTML(
+        htmlInput.value,
+        htmlIndent,
+        htmlRemoveEmpty.checked
+      );
+      htmlOutput.value = result;
+      updateBadge(htmlBadge, result);
+    }
+
+    function autoRun() {
+      if (!htmlInput.value.trim()) return;
+      runBeautify();
+    }
+
+    if (htmlRemoveEmpty) {
+      htmlRemoveEmpty.addEventListener("change", autoRun);
     }
 
     root.dataset.toolInit = "1";

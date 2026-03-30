@@ -288,18 +288,21 @@
       result = result.replace(/;(\s*)\/\*/g, "; /*");
     }
 
-    // Thêm khoảng trống giữa các block (kể cả trong @media)
-    if (!opt.removeLineGaps) {
-      // Sau dấu } nếu dòng tiếp theo không phải } => thêm 1 dòng trống
-      result = result.replace(/}\n(?=[^\s}])/g, "}\n");
+    // normalize: bỏ whitespace thừa cuối mỗi dòng
+    result = result
+      .split("\n")
+      .map((l) => l.replace(/[ \t]+$/g, ""))
+      .join("\n");
 
-      // Bên trong @media: thêm dòng trống giữa các selector-block
-      result = result.replace(/}\n(\s*\.)/g, "}\n\n$1");
-    }
-
-    // nếu chọn "Xóa khoảng cách mỗi dòng" thì gom dòng trống
+    // Khoảng cách giữa các block
     if (opt.removeLineGaps) {
-      result = result.replace(/\n{2,}/g, "\n");
+      // "Xóa khoảng cách mỗi dòng" => không cho dòng trống
+      result = result.replace(/\n\s*\n+/g, "\n");
+    } else {
+      // thêm 1 dòng trống giữa các block nếu sau "}" là một statement mới (không phải "}")
+      result = result.replace(/}\n(?=[^\s}])/g, "}\n\n");
+      // giới hạn tối đa 1 dòng trống
+      result = result.replace(/\n{3,}/g, "\n\n");
     }
 
     return result.trim();

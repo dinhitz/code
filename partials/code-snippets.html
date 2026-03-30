@@ -1,0 +1,26 @@
+<!-- CSS -->
+<div id="css_1" data-tab="css" data-title="Tiêu đề 2 dòng">
+<textarea spellcheck="false" readonly>
+overflow: hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+</textarea>
+</div>
+
+<!-- JS -->
+<div id="js_1" data-tab="js" data-title="Remove toàn bộ ID, Class động trong FS">
+<textarea spellcheck="false" readonly>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  
+    document.querySelectorAll('[id^="section_"], [id^="row-"], [id^="col-"]').forEach(el => {
+      el.removeAttribute('id');
+    });
+  
+  });
+</script>
+</textarea>
+</div>
+

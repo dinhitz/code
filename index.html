@@ -27,6 +27,7 @@
     <div id="js-panel-container"></div>
     <div id="css-panel-container"></div> 
     <div id="code-panel-container"></div> 
+    <div class="author">Design & Developer by <a href="tel:09055586889">Dinhit</a></div>
   </div>
 
   <button class="theme-toggle" type="button">
@@ -62,6 +63,7 @@
   <script src="js/html_tool.js"></script>
   <script src="js/js_tool.js"></script>
   <script src="js/css_tool.js"></script>
+  <script src="js/code_tool.js"></script>
 
   <script>
     fetch('partials/html-panel.html')
@@ -89,6 +91,7 @@
       .then(res => res.text())
       .then(data => {
         document.getElementById('code-panel-container').innerHTML = data;
+        if (window.initCodeTool) window.initCodeTool();
       });
   </script>
 
