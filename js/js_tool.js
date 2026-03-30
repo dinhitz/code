@@ -1,7 +1,12 @@
 // js_tool.js
-document.addEventListener("DOMContentLoaded", function () {
+(function () {
+  function initJsTool() {
     if (!window.ToolHelpers) return;
-  
+
+    const root = document.querySelector('.tool-panel[data-tab="js"]');
+    if (!root) return;
+    if (root.dataset.toolInit === "1") return;
+
     const {
       updateBadge,
       getIndentUnitFromValue,
@@ -9,21 +14,24 @@ document.addEventListener("DOMContentLoaded", function () {
       attachClearButton,
       attachSelectAllButton,
     } = window.ToolHelpers;
-  
+
     /* ========= JS BEAUTIFIER (ĐƠN GIẢN, AN TOÀN) ========= */
-  
+
     const jsInput       = document.getElementById("js-input");
     const jsOutput      = document.getElementById("js-output");
     const jsBtnBeautify = document.getElementById("js-beautify");
     const jsBadge       = document.getElementById("js-length");
     const jsRemoveEmpty = document.getElementById("js-remove-empty");
-  
+
+    // panel chưa được inject xong
+    if (!jsInput || !jsOutput) return;
+
     attachCopyButton(
       document.getElementById("js-copy"),
       jsOutput
     );
     attachClearButton(
-      document.getElementById("js-clear"), 
+      document.getElementById("js-clear"),
       jsInput,
       jsBadge
     );
@@ -31,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("js-select-all"),
       jsInput
     );
-  
+
     let jsIndent = "2";
     const jsIndentButtons = document.querySelectorAll(".indent-js");
     jsIndentButtons.forEach((btn) => {
@@ -293,5 +301,11 @@ document.addEventListener("DOMContentLoaded", function () {
         updateBadge(jsBadge, result);
       });
     }
-  });
+
+    root.dataset.toolInit = "1";
+  }
+
+  window.initJsTool = initJsTool;
+  document.addEventListener("DOMContentLoaded", initJsTool);
+})();
   

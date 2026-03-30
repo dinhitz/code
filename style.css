@@ -146,6 +146,15 @@
     box-shadow:0 0 0 1px rgba(37,99,235,0.25);
     background:var(--card-elevated)
   }
+
+  /* ========= CODE TAB (hiển thị dạng code + copy) ========= */
+  .tool-panel[data-tab="code"] textarea.card-content.code-output {
+    min-height: 140px;
+    height: auto;
+    resize: vertical;
+    overflow: auto;
+    margin-top: 6px;
+  }
   /* ========= BUTTON ========= */
   .btn {
     border-radius:999px;

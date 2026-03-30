@@ -1,28 +1,36 @@
 // css-tool.js
-document.addEventListener("DOMContentLoaded", function () {
-  if (!window.ToolHelpers) return;
+(function () {
+  function initCssTool() {
+    if (!window.ToolHelpers) return;
 
-  const {
-    updateBadge,
-    getIndentUnitFromValue,
-    attachCopyButton,
-    attachClearButton,
-    attachSelectAllButton,
-  } = window.ToolHelpers;
+    const root = document.querySelector('.tool-panel[data-tab="css"]');
+    if (!root) return;
+    if (root.dataset.toolInit === "1") return;
 
-  /* ========= CSS TOOL ========= */
+    const {
+      updateBadge,
+      getIndentUnitFromValue,
+      attachCopyButton,
+      attachClearButton,
+      attachSelectAllButton,
+    } = window.ToolHelpers;
 
-  const cssInput  = document.getElementById("css-input");
-  const cssOutput = document.getElementById("css-output");
-  const cssBadge  = document.getElementById("badge-length");
+    /* ========= CSS TOOL ========= */
 
-  attachCopyButton(document.getElementById("btn-copy"), cssOutput);
-  attachClearButton(document.getElementById("css-clear"), cssInput, cssBadge);
-  attachSelectAllButton(document.getElementById("css-select-all"), cssInput);
+    const cssInput  = document.getElementById("css-input");
+    const cssOutput = document.getElementById("css-output");
+    const cssBadge  = document.getElementById("badge-length");
 
-  const btnToggleMinify   = document.getElementById("btn-toggle-minify");
-  const btnToggleBeautify = document.getElementById("btn-toggle-beautify");
-  const toggleSlider      = document.getElementById("toggle-slider");
+    // panel chưa được inject xong
+    if (!cssInput || !cssOutput) return;
+
+    attachCopyButton(document.getElementById("btn-copy"), cssOutput);
+    attachClearButton(document.getElementById("css-clear"), cssInput, cssBadge);
+    attachSelectAllButton(document.getElementById("css-select-all"), cssInput);
+
+    const btnToggleMinify   = document.getElementById("btn-toggle-minify");
+    const btnToggleBeautify = document.getElementById("btn-toggle-beautify");
+    const toggleSlider      = document.getElementById("toggle-slider");
 
   // NÉN
   const optRemoveComments = document.getElementById("opt-remove-comments");
@@ -397,5 +405,13 @@ document.addEventListener("DOMContentLoaded", function () {
     btnToggleBeautify.addEventListener("click", runBeautify);
   }
 
-  setCssMode("minify");
-});
+    setCssMode("minify");
+    root.dataset.toolInit = "1";
+  }
+
+  // expose để gọi sau khi fetch inject panel
+  window.initCssTool = initCssTool;
+
+  // chạy nếu panel đã có sẵn trong DOM lúc load
+  document.addEventListener("DOMContentLoaded", initCssTool);
+})();

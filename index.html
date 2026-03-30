@@ -26,6 +26,7 @@
     <div id="html-panel-container"></div>
     <div id="js-panel-container"></div>
     <div id="css-panel-container"></div> 
+    <div id="code-panel-container"></div> 
   </div>
 
   <button class="theme-toggle" type="button">
@@ -57,12 +58,39 @@
     </span>
   </button>
   
-  
-
-  <script src="js/include.js"></script>
   <script src="js/common.js"></script>
   <script src="js/html_tool.js"></script>
   <script src="js/js_tool.js"></script>
   <script src="js/css_tool.js"></script>
+
+  <script>
+    fetch('partials/html-panel.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('html-panel-container').innerHTML = data;
+        if (window.initHtmlTool) window.initHtmlTool();
+      });
+
+    fetch('partials/css-panel.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('css-panel-container').innerHTML = data;
+        if (window.initCssTool) window.initCssTool();
+      });
+
+    fetch('partials/js-panel.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('js-panel-container').innerHTML = data;
+        if (window.initJsTool) window.initJsTool();
+      });
+
+    fetch('partials/code-panel.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('code-panel-container').innerHTML = data;
+      });
+  </script>
+
 </body>
 </html>

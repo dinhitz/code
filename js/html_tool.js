@@ -1,46 +1,54 @@
 // html_tool.js
-document.addEventListener("DOMContentLoaded", function () {
-  if (!window.ToolHelpers) return;
+(function () {
+  function initHtmlTool() {
+    if (!window.ToolHelpers) return;
 
-  const {
-    updateBadge,
-    getIndentUnitFromValue,
-    attachCopyButton,
-    attachClearButton,
-    attachSelectAllButton,
-  } = window.ToolHelpers;
+    const root = document.querySelector('.tool-panel[data-tab="html"]');
+    if (!root) return;
+    if (root.dataset.toolInit === "1") return;
 
-  /* ========= HTML BEAUTIFIER ========= */
+    const {
+      updateBadge,
+      getIndentUnitFromValue,
+      attachCopyButton,
+      attachClearButton,
+      attachSelectAllButton,
+    } = window.ToolHelpers;
 
-  const htmlInput       = document.getElementById("html-input");
-  const htmlOutput      = document.getElementById("html-output");
-  const htmlBtnBeautify = document.getElementById("html-beautify");
-  const htmlBadge       = document.getElementById("html-length");
-  const htmlRemoveEmpty = document.getElementById("html-remove-empty");
+    /* ========= HTML BEAUTIFIER ========= */
 
-  attachCopyButton(
-    document.getElementById("html-copy"),
-    htmlOutput
-  );
-  attachClearButton(
-    document.getElementById("html-clear"),
-    htmlInput,
-    htmlBadge
-  );
-  attachSelectAllButton(
-    document.getElementById("html-select-all"),
-    htmlInput
-  );
+    const htmlInput       = document.getElementById("html-input");
+    const htmlOutput      = document.getElementById("html-output");
+    const htmlBtnBeautify = document.getElementById("html-beautify");
+    const htmlBadge       = document.getElementById("html-length");
+    const htmlRemoveEmpty = document.getElementById("html-remove-empty");
 
-  let htmlIndent = "2";
-  const htmlIndentButtons = document.querySelectorAll(".indent-html");
-  htmlIndentButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      htmlIndentButtons.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      htmlIndent = btn.getAttribute("data-indent-html") || "2";
+    // panel chưa được inject xong
+    if (!htmlInput || !htmlOutput) return;
+
+    attachCopyButton(
+      document.getElementById("html-copy"),
+      htmlOutput
+    );
+    attachClearButton(
+      document.getElementById("html-clear"),
+      htmlInput,
+      htmlBadge
+    );
+    attachSelectAllButton(
+      document.getElementById("html-select-all"),
+      htmlInput
+    );
+
+    let htmlIndent = "2";
+    const htmlIndentButtons = document.querySelectorAll(".indent-html");
+    htmlIndentButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        htmlIndentButtons.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        htmlIndent = btn.getAttribute("data-indent-html") || "2";
+      });
     });
-  });
 
   /**
    * Beautify HTML:
@@ -211,15 +219,21 @@ document.addEventListener("DOMContentLoaded", function () {
     return result.trim();
   }
 
-  if (htmlBtnBeautify) {
-    htmlBtnBeautify.addEventListener("click", () => {
-      const result = beautifyHTML(
-        htmlInput.value,
-        htmlIndent,
-        htmlRemoveEmpty.checked
-      );
-      htmlOutput.value = result;
-      updateBadge(htmlBadge, result);
-    });
+    if (htmlBtnBeautify) {
+      htmlBtnBeautify.addEventListener("click", () => {
+        const result = beautifyHTML(
+          htmlInput.value,
+          htmlIndent,
+          htmlRemoveEmpty.checked
+        );
+        htmlOutput.value = result;
+        updateBadge(htmlBadge, result);
+      });
+    }
+
+    root.dataset.toolInit = "1";
   }
-});
+
+  window.initHtmlTool = initHtmlTool;
+  document.addEventListener("DOMContentLoaded", initHtmlTool);
+})();
