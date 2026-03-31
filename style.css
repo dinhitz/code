@@ -1,8 +1,8 @@
 :root {
-  /* Cho phép browser chỉnh scrollbar, form theo theme */
-  color-scheme:light; /* Màu cơ bản */
+  /* Cho phÃ©p browser chá»‰nh scrollbar, form theo theme */
+  color-scheme:light; /* MÃ u cÆ¡ báº£n */
   --primary:#2563eb;
-  --primary-dark:#1d4ed8; /* Light theme – giá trị mặc định */
+  --primary-dark:#1d4ed8; /* Light theme â€“ giÃ¡ trá»‹ máº·c Ä‘á»‹nh */
   --page-bg:#eef5ff;
   --card-bg:#ffffff;
   --card-elevated:#f9fafb;
@@ -34,10 +34,10 @@
   --font:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
   sans-serif
 }
-/* DARK THEME – override biến */
+/* DARK THEME â€“ override biáº¿n */
 :root[data-theme="dark"] {
   color-scheme:dark;
-  --page-bg:#020617; /* bg tổng */
+  --page-bg:#020617; /* bg tá»•ng */
   --card-bg:#020617; /* card */
   --card-elevated:#020617;
   --border-color:rgba(148,163,184,0.35);
@@ -116,11 +116,16 @@ h1 {
   gap:8px
 }
 .card-title {
-  font-size:15px;
+  font-size: 16px;
   font-weight:600;
   color:var(--text-heading);
   display:flex;
   align-items:center
+}
+.code-cards-grid .card {
+    border: 0;
+    padding: 16px 0 0;
+    background: none;
 }
 /* ========= TEXTAREA ========= */
 textarea {
@@ -147,7 +152,7 @@ textarea:focus {
   box-shadow:0 0 0 1px rgba(37,99,235,0.25);
   background:var(--card-elevated)
 }
-/* ========= CODE TAB (hiển thị dạng code + copy) ========= */
+/* ========= CODE TAB (hiá»ƒn thá»‹ dáº¡ng code + copy) ========= */
 .tool-panel[data-tab="code"] textarea.card-content.code-output {
   min-height:140px;
   height:auto;
@@ -158,19 +163,12 @@ textarea:focus {
 /* ========= CODE SUB TABS (HTML / JS / CSS) ========= */
 .code-subtabs {
   display:inline-flex;
-  padding:4px;
-  border-radius:999px;
-  background:var(--tab-bg);
   margin-bottom:14px;
-  box-shadow:0 5px 14px rgba(15, 23, 42, 0.12);
-  border:1px solid var(--textarea-border);
-  gap:2px
+  gap: 16px;
 }
 .code-subtab {
-  border-radius:999px;
   border:none;
   background:transparent;
-  padding:8px 16px;
   font-size:13px;
   font-weight:600;
   color:var(--tab-text);
@@ -178,19 +176,16 @@ textarea:focus {
   transition:all 0.18s ease-out;
   white-space:nowrap
 }
-.code-subtab:hover {background:rgba(255, 255, 255, 0.7)}
-:root[data-theme="dark"] .code-subtab:hover {background:rgba(15, 23, 42, 0.85)}
+.code-subtab:hover {color: rgba(255, 255, 255, 0.7);}
 .code-subtab.active {
-  background:var(--tab-active-bg);
-  color:var(--tab-active-text);
-  box-shadow:0 8px 18px rgba(37, 99, 235, 0.42)
+  color: var(--tab-active-bg);
 }
 .code-tab-panel {display:none}
 .code-tab-panel.is-active {display:block}
 .code-cards-grid {
   display:grid;
   grid-template-columns:repeat(2, minmax(0, 1fr));
-  gap:20px
+  gap: 20px 40px;
 }
 @media (max-width: 900px) {
   .code-cards-grid {grid-template-columns:1fr}
@@ -371,7 +366,7 @@ textarea:focus {
   background:rgba(255,255,255,0.7)
 }
 :root[data-theme="dark"] .main-tab:hover {
-  background:rgba(15,23,42,0.85)
+  background: var(--tab-active-bg);
 }
 .main-tab.active {
   background:var(--tab-active-bg);
@@ -481,7 +476,7 @@ textarea:focus {
   right:20px;
   transition:background .25s ease, border-color .25s ease
 }
-/* TRACK (chứa icon) */
+/* TRACK (chá»©a icon) */
 .theme-toggle__track {
   width:100%;
   height:100%;

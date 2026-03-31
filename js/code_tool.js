@@ -9,13 +9,13 @@
 
     const { attachCopyButton } = window.ToolHelpers;
     const containers = {
-      html: root.querySelector("#code-panel-html"),
+      func: root.querySelector("#code-panel-func"),
       js: root.querySelector("#code-panel-js"),
       css: root.querySelector("#code-panel-css"),
     };
 
     function setActiveTab(tab) {
-      const t = tab === "html" || tab === "js" || tab === "css" ? tab : "html";
+      const t = tab === "func" || tab === "js" || tab === "css" ? tab : "func";
 
       root.querySelectorAll(".code-subtab").forEach((btn) => {
         const isActive = btn.getAttribute("data-code-tab") === t;
@@ -86,7 +86,7 @@
 
         const id = holder.id;
         const tabRaw = (holder.getAttribute("data-tab") || "").toLowerCase();
-        const tab = tabRaw === "js" || tabRaw === "css" || tabRaw === "html" ? tabRaw : "html";
+        const tab = tabRaw === "js" || tabRaw === "css" || tabRaw === "func" ? tabRaw : "func";
         const title = holder.getAttribute("data-title") || `Snippet ${idx + 1}`;
         const content = normalizeSnippet(snippetTextarea.textContent || "");
 
@@ -137,13 +137,13 @@
         targetContainer.appendChild(card);
       });
 
-      // default: nếu có CSS snippets thì mở CSS, không thì HTML
+      // default: nếu có CSS snippets thì mở CSS, không thì FUNCTION
       const hasCss = containers.css && containers.css.children.length > 0;
       const hasJs = containers.js && containers.js.children.length > 0;
-      const hasHtml = containers.html && containers.html.children.length > 0;
+      const hasFunc = containers.func && containers.func.children.length > 0;
       if (hasCss) setActiveTab("css");
       else if (hasJs) setActiveTab("js");
-      else if (hasHtml) setActiveTab("html");
+      else if (hasFunc) setActiveTab("func");
     } catch (err) {
       console.error("Load code snippets failed:", err);
     }
