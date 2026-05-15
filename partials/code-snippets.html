@@ -9,6 +9,84 @@ display: -webkit-box;
 </textarea>
 </div>
 
+<div id="css_2" data-tab="css" data-title="Menu 3 cấp cho FS">
+<textarea spellcheck="false" readonly>
+  .header-nav li ul.sub-menu a {
+    font-size:14px;
+    color:#333;
+    margin:0;
+    padding-left:12px
+  }
+  .header-nav ul.sub-menu {
+    padding:10px 16px;
+    z-index:5;
+    box-shadow:2px 2px 2px #999
+  }
+  .header-nav li ul.sub-menu li a:before {
+    content:'';
+    width:5px;
+    height:5px;
+    background:var(--fs-color-primary);
+    position:absolute;
+    top:50%;
+    left:0;
+    border-radius:100%;
+    transform:translateY(-50%);
+    margin-top:-.5px
+  }
+  .header-nav .sub-menu a:hover,
+  header#header .nav-dropdown li.menu-item-has-children > a:hover {transform:translateX(8px)}
+  header#header .nav-dropdown {display:block}
+  header#header .nav-dropdown li {
+    border-right:0;
+    white-space:normal;
+    width:100%;
+    display:block;
+    position:relative
+  }
+  header#header .nav-dropdown li.menu-item-has-children::after {
+    content:'';
+    position:absolute;
+    top:0;
+    right:-24px;
+    width:24px;
+    height:100%;
+    background:transparent
+  }
+  header#header .nav-dropdown ul.sub-menu {
+    position:absolute;
+    left:calc(100% + 16px);
+    top:0;
+    background:#fff;
+    min-width:250px;
+    padding:10px 16px;
+    display:none !important;
+    z-index:999
+  }
+  header#header .nav-dropdown ul.sub-menu a {
+    white-space:normal;
+    margin:0;
+    padding:10px 15px;
+    border:0;
+    font-weight:400
+  }
+  header#header .nav-dropdown li:hover > ul.sub-menu {display:block !important}
+  header#header .nav-dropdown li.menu-item-has-children > a {
+    text-transform:none;
+    border:0;
+    font-size:14px;
+    font-weight:600;
+    position:relative;
+    padding-left:14px;
+    transform:translateX(0);
+    color:#333;
+    margin:0
+  }
+  header#header .nav-dropdown li.active > a {color:#e82c2a}
+</textarea>
+</div>
+
+
 <!-- JS -->
 <div id="js_1" data-tab="js" data-title="Remove toàn bộ ID, Class động trong FS">
 <textarea spellcheck="false" readonly>
@@ -23,6 +101,31 @@ display: -webkit-box;
 </script>
 </textarea>
 </div>
+
+<div id="js_2" data-tab="js" data-title="Đổi image thành background image trong FS">
+  <textarea spellcheck="false" readonly>
+    <script>
+      document.querySelectorAll('.section-bg').forEach(function(bg){
+      
+          const img = bg.querySelector('img');
+      
+          if(!img) return;
+      
+          const src = img.getAttribute('src');
+      
+          if(!src) return;
+      
+          bg.style.backgroundImage = `url(${src})`;
+          bg.style.backgroundSize = 'cover';
+          bg.style.backgroundPosition = 'center';
+          //bg.style.backgroundAttachment = 'fixed';
+      
+          img.style.display = 'none';
+      
+      });
+      </script>
+  </textarea>
+  </div>
 
 <!-- FUNCTION -->
 <div id="func_1" data-tab="func" data-title="Active SVG in FS">
